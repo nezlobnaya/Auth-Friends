@@ -9,19 +9,19 @@ const LoginForm = ({ errors, touched }) => {
         <Form className='form-group'>
             <div className='form'>
                 <label className='label'>Username</label> 
-                    <Field name='username' type='username'
+                    <Field name='username' type='username' placeholder='Username'
                         autoComplete='off' 
                      />
                      <p>{touched.username && errors.username}</p>
             </div>
             <div className='form'>
                 <label className='label'>Password</label> 
-                    <Field name='password' type='password'
+                    <Field name='password' type='password' placeholder='Password'
                         autoComplete='off'
                      />
                     <p>{touched.password && errors.password}</p>
             </div>           
-            <button type='submit' >Enter &rarr; </button>
+            <button type='submit' >Come on in &rarr; </button>
         </Form>
      );
 }
