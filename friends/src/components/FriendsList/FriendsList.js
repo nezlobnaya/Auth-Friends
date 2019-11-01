@@ -18,6 +18,18 @@ const FriendsList = ({history, ...props}) => {
                console.log(error)
           })
      }, [])
+     
+     const handleDelete= (id) => {
+          api()
+          // .delete(`https://refu-stories-api.herokuapp.com/stories/${id}`)
+          .delete(`/friends/${id}`)
+              .then (res => {
+                 console.log(res.data)
+                 setFriends(res.data)
+              } )
+              .catch(err => console.log('Error: ', err))        
+        }
+
     return ( 
      <div>
           <h3>Friends</h3>
@@ -27,7 +39,8 @@ const FriendsList = ({history, ...props}) => {
                     history.push('/login')}}>Logout</button>
                <div className='list'>
                     {friends.map((i,id) => (
-                         <Friend key={i.id} name={i.name} age={i.age} email={i.email} />
+                         <Friend key={i.id} name={i.name} age={i.age} email={i.email}
+                         removeFriend={() => handleDelete(i.id)} />
                     ))}
                </div>
      </div>
