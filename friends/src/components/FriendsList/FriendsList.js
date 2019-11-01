@@ -19,18 +19,18 @@ const FriendsList = ({history, ...props}) => {
           })
      }, [])
     return ( 
-    <div className='list'>
-           <h3>Friends</h3>
-           <button onClick={() => {
-                localStorage.removeItem('token');
-                // eslint-disable-next-line no-restricted-globals
-                history.push('/login')}}>Logout</button>
-
-          {friends.map((i,id) => (
-               <Friend key={i.id} name={i.name} age={i.age} email={i.email} />
-          ))}
-    </div>
-      
+     <div>
+          <h3>Friends</h3>
+          <button onClick={() => {
+                    localStorage.removeItem('token');
+                    // eslint-disable-next-line no-restricted-globals
+                    history.push('/login')}}>Logout</button>
+               <div className='list'>
+                    {friends.map((i,id) => (
+                         <Friend key={i.id} name={i.name} age={i.age} email={i.email} />
+                    ))}
+               </div>
+     </div>
      );
 }
  

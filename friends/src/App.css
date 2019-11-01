@@ -85,3 +85,47 @@ button {
     display: block;
     
   }
+
+  
+  .friend {
+    background-color: #fcbb58;
+    border: 0;
+    box-shadow: 0 -1px 0 #e0e0e0, 0 0 5px rgba(0, 0, 0, 0.12),
+      0 5px 8px rgba(0, 0, 0, 0.24);
+    padding: 1rem;
+    cursor: pointer;
+    position: relative;
+    margin: 1rem auto;
+  }
+
+.list {
+      display: flex;
+      flex-flow: wrap;
+      transition: 0.5s;
+    }
+
+.list :hover {
+  transform: translateY(-4px) scale(1.01);  
+}
+    
+    nav {
+      background: rgb(195, 174, 174);
+      top: 0;
+      width: 100%;
+      transition: all 0.2s;
+      position: relative;
+      z-index: 1;
+    }
+ 
+    nav a {
+      text-decoration: none;
+      padding: 20px;
+      display: inline-block;
+      transition: all 0.2s;
+      text-transform: uppercase;
+    }
+  
+    nav a:hover {
+      color: #fcbb58;
+      cursor: pointer;
+    }
