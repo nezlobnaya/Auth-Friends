@@ -14,7 +14,7 @@ function App() {
       <h1>A Friend in Need is a Friend Indeed</h1>
       <nav>
         <Link to='/'>Home</Link>
-        <Link to='/login'>Log In</Link>
+        {!signedIn && <Link to='/login'>Log In</Link>}
         {signedIn && <Link to='/friendslist'>Friends</Link>}
       </nav>
       <Route exact path='/login' component={LoginForm} />
