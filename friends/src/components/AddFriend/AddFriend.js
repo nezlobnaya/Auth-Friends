@@ -4,15 +4,16 @@ import { Form, Field, withFormik } from 'formik'
 import * as yup from 'yup'
 
 
-const AddFriend = ({ errors, touched, values, status }) => {
+const AddFriend = ({ errors, touched, values, status, ...props }) => {
     const [friends, setFriends] = useState([])
+    console.log("Formik props", props)
    
     useEffect(() => {
         status ? (
             setFriends([...friends, status])
         ): ( console.log('effect fired'))
          // eslint-disable-next-line react-hooks/exhaustive-deps 
-    }, [])
+    }, []);
 
     return ( 
         <div className='user-form'>
@@ -49,7 +50,8 @@ const AddFriend = ({ errors, touched, values, status }) => {
 
             <span className='checkmark' />
             </label>
-            <button type='submit'>Submit</button>
+            <button type='submit' >Submit</button>
+            <button type='button' onClick={props.resetForm} >Reset</button>
          </Form>
          
         </div>
@@ -74,14 +76,13 @@ export default withFormik({
         checkbox: yup.boolean().oneOf([true], 'Must check the Box')
     }),
 
-    handleSubmit(values, { setStatus }) {
+    handleSubmit(values, { setStatus, reset }) {
         api()
         .post('/friends', values)
         .then(res => {
             console.log(res)
             setStatus(res.data);
         })
-        .catch(err => console.log(err.response));
     }
 
 
