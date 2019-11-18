@@ -4,15 +4,16 @@ import { Form, Field, withFormik } from 'formik'
 import * as yup from 'yup'
 
 
-const AddFriend = ({ errors, touched, values, status }) => {
-    const [friends, setFriends] = useState([])
+const AddFriend = ({ errors, touched, values, status, ...props }) => {
+    const [friend, setFriend] = useState([])
+    console.log("Formik props", props)
    
     useEffect(() => {
         status ? (
-            setFriends([...friends, status])
+            setFriend([...friend, status])
         ): ( console.log('effect fired'))
          // eslint-disable-next-line react-hooks/exhaustive-deps 
-    }, [])
+    }, []);
 
     return ( 
         <div className='user-form'>
@@ -49,7 +50,8 @@ const AddFriend = ({ errors, touched, values, status }) => {
 
             <span className='checkmark' />
             </label>
-            <button type='submit'>Submit</button>
+            <button type='submit' >Submit</button>
+            {/* <button type='button' onClick={props.resetForm} >Reset</button> */}
          </Form>
          
         </div>
@@ -74,14 +76,15 @@ export default withFormik({
         checkbox: yup.boolean().oneOf([true], 'Must check the Box')
     }),
 
-    handleSubmit(values, { setStatus }) {
+    handleSubmit(values, { setStatus, reset, props }) {
         api()
         .post('/friends', values)
         .then(res => {
-            console.log(res)
+            console.log('Add', res)
             setStatus(res.data);
+            props.history.push(`/friendslist/`)
         })
-        .catch(err => console.log(err.response));
+        .catch(err => console.log(err))
     }
 
 

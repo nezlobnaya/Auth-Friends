@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "concurrently": "^5.0.0",
     "cors": "^2.8.3",
     "express": "^4.15.2"
   },
@@ -12,7 +13,10 @@
     "nodemon": "^1.17.2"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "friend-install": "npm install --prefix friend",
+    "start": "nodemon server.js",
+    "friend": "npm start --prefix friend",
+    "dev": "concurrently \"npm run server\"\"npm run friend\""
   },
   "author": "Lambda School",
   "license": "ISC"
